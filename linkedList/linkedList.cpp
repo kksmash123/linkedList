@@ -11,6 +11,29 @@ struct Node
 }*head=NULL;
 
 
+int recursiveSum(struct Node* head)
+{
+	if (!head)
+		return 0;
+	return recursiveSum(head->next) + head->data;
+
+}
+
+
+void sumLL()
+{
+	int sum = 0;
+
+	struct Node* p = head;
+
+	while (p)
+	{
+		sum += p->data;
+		p = p->next;
+	}
+
+	cout << sum;
+}
 
 
 int recursivecountDown(struct Node* head)
@@ -152,7 +175,9 @@ int main()
 
 	//cout<<recursivecountDown(head);
 
+	//sumLL();
 
+	//cout<<recursiveSum(head);
 
 
 }

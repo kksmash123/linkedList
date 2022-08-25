@@ -13,6 +13,44 @@ struct Node
 int countingNodes();
 
 
+
+void InsertInSortedList(int val)
+{
+	struct Node* cur, * prev ;
+
+	cur = head?head->next:NULL;
+	prev = head;
+	struct Node* newNode = new Node;
+
+	newNode->data = val;
+	newNode->next = NULL;
+
+	if (!head)
+	{
+		head = newNode;
+		return;
+	}
+	
+	if (val < head->data)
+	{
+		newNode->next = head;
+		head = newNode;
+		return;
+	}
+
+	
+	while ( cur && cur->data < val)
+	{
+		prev = cur;
+		cur = cur->next;
+	}
+	newNode->next=prev->next;
+	prev->next = newNode;
+
+}
+
+
+
 void InsertAtLast(int val)
 {
 	struct Node * newNode;
@@ -356,11 +394,11 @@ void createLL(int a[], int n)
 
 int main()
 {
-	int a[5] = { 10,20,30,40,50 };
+	/*int a[5] = { 10,20,30,40,50 };
 
-	//createLL(a, 5);
+	createLL(a, 5);
 
-	//Display(head);
+	Display(head);*/
 
 	//ReverseLL();
 	//Display();
@@ -399,10 +437,22 @@ int main()
 	//InsertLL(4, 100);
 	//Display(head);
 	
-	InsertAtLast(20);
+	/*InsertAtLast(20);
 	InsertAtLast(400);
 	InsertAtLast(300);
 	InsertAtLast(70);
+	Display(head);*/
+
+
+	/*int a[5] = { 10,20,30,60,100 };
+
+	createLL(a, 5);*/
+
+	Display(head);
+
+	InsertInSortedList(150);
+	cout << endl << "after insertion " << endl;
+
 	Display(head);
 
 

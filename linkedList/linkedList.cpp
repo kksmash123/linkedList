@@ -10,6 +10,178 @@ struct Node
 
 }*head=NULL;
 
+int countingNodes();
+
+
+
+
+
+
+
+void InsertLL(int pos, int val)
+{
+
+	if (pos<0 || pos > countingNodes())
+		return;
+
+	struct Node* newNode = new Node, * t = head;
+	int i;
+
+	newNode->data = val;
+
+	if (pos == 0)
+	{
+		newNode->next = head;
+
+		head = newNode;
+	}
+
+	else
+	{
+		for (i = 1;i < pos;i++)
+			t = t->next;
+
+		newNode->next = t->next;
+		t->next= newNode;
+
+	}
+
+
+}
+
+
+
+
+
+void LsearchSwap(int x)
+{
+	struct Node* cur = head, * prev = NULL, * pprev = NULL;
+
+	while (cur)
+	{
+		if (x == cur->data)
+		{
+			pprev->next = cur;
+			prev->next = cur->next;
+			cur->next=prev;
+		}
+
+		pprev = prev;
+		prev = cur;
+		cur = cur->next;
+	}
+
+	                    
+}
+
+
+
+void LsearchMoveToFront(int x)
+{
+	struct Node* cur = head,*prev=NULL;
+
+	while (cur)
+	{
+		if (x == cur->data)
+		{
+			prev->next = cur->next;
+			cur->next = head;
+			head = cur;
+		}
+
+		prev = cur;
+		cur = cur->next;
+	}
+
+}
+
+
+bool recurLsearch(struct Node * head,int x)
+{
+	if (!head)
+	{
+		cout << "element not found";
+		return 0;
+	}
+
+	if (x == head->data)
+	{
+		cout << "element found";
+		return 1;
+	}
+
+	recurLsearch(head->next, x);
+
+}
+
+
+void LinearSearch(int x)
+{
+	struct Node* p = head;
+
+	while (p)
+	{
+		if (x == p->data)
+		{
+			cout << "element found ";
+			break;
+		}
+
+		p = p->next;
+
+	}
+
+	if (!p)
+		cout << "element not found ";
+
+}
+
+
+int recurMax2(struct Node* head)
+{
+	int x = 0;
+
+	if (!head)
+		return INT_MIN;
+	x = recurMax2(head->next);
+
+	return x > head->data ? x : head->data;
+
+
+}
+
+int RecurMaxValLL(struct Node* head)
+{
+	
+	static int maxv = INT_MIN;
+
+	if (!head)
+		return 0;
+
+	
+	maxv = max(head->data, maxv);
+
+	RecurMaxValLL(head->next);
+
+	return maxv;
+}
+
+
+void maxLL()
+{
+	struct Node* p = head;
+	int maxVal = INT_MIN;
+	while (p)
+	{
+		maxVal = max(maxVal, p->data);
+		p = p->next;
+	}
+
+
+	cout << maxVal;
+
+}
+
 
 int recursiveSum(struct Node* head)
 {
@@ -18,7 +190,6 @@ int recursiveSum(struct Node* head)
 	return recursiveSum(head->next) + head->data;
 
 }
-
 
 void sumLL()
 {
@@ -57,7 +228,7 @@ int recursiveCount(struct Node* head )
 	return x;
 }
 
-void countingNodes()
+int countingNodes()
 {
 	struct Node* p = head;
 	int count = 0;
@@ -67,7 +238,7 @@ void countingNodes()
 		p = p->next;
 
 	}
-	cout << count;
+	return count;
 }
 
 
@@ -121,7 +292,7 @@ void ReverseLL()
 }
 
 
-void Display(struct Node *head=NULL)
+void Display(struct Node *head)
 {
 	struct Node* p = head;
 
@@ -154,6 +325,10 @@ void createLL(int a[], int n)
 
 }
 
+
+
+
+
 int main()
 {
 	int a[5] = { 10,20,30,40,50 };
@@ -178,6 +353,26 @@ int main()
 	//sumLL();
 
 	//cout<<recursiveSum(head);
+
+	//maxLL();
+
+	//cout<<RecurMaxValLL(head);
+
+	//cout << recurMax2(head);
+
+	//LinearSearch(3);
+
+	//recurLsearch(head, 30);
+
+	//LsearchMoveToFront(30);
+	//Display(head);
+
+	//LsearchSwap(30);
+	//Display(head);
+
+
+	//InsertLL(4, 100);
+	//Display(head);
 
 
 }

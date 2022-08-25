@@ -12,6 +12,31 @@ struct Node
 int countingNodes();
 
 
+
+void RemoveDuplicates2()
+{
+	struct Node* cur, * d;
+	cur = head;
+	d = NULL;
+
+	if (!head || !head->next)
+		return;
+
+	while (cur->next)
+	{
+		while (cur->data != cur->next->data)
+			cur = cur->next;
+
+		d = cur->next;
+		cur->next = d->next;
+		delete d;
+
+	}
+
+
+}
+
+
 void RemoveDuplicates()
 {
 
@@ -645,9 +670,14 @@ int main()
 
 	//IsSorted2();
 
-	RemoveDuplicates();
+	/*RemoveDuplicates();
+	cout << endl << "after removing duplicates" << endl;
+	Display(head);*/
+
+	RemoveDuplicates2();
 	cout << endl << "after removing duplicates" << endl;
 	Display(head);
+
 
 
 }

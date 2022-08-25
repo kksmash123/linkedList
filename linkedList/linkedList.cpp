@@ -8,12 +8,37 @@ struct Node
 
 	struct Node *next;
 
-}*head=NULL;
+}*head=NULL,*glast=NULL;
 
 int countingNodes();
 
 
+void InsertAtLast(int val)
+{
+	struct Node * newNode;
+	struct Node* first=head;
+	struct Node* last=glast;
 
+	newNode = new Node;
+	newNode->data = val;
+	newNode->next = NULL;
+
+	if (first == NULL)
+	{
+		first = newNode;
+		last = newNode;
+		head = first;
+		
+	}
+	else
+	{
+		last->next = newNode;
+		last = newNode;
+	}
+	
+	glast = last;
+
+}
 
 
 
@@ -333,7 +358,7 @@ int main()
 {
 	int a[5] = { 10,20,30,40,50 };
 
-	createLL(a, 5);
+	//createLL(a, 5);
 
 	//Display(head);
 
@@ -373,6 +398,12 @@ int main()
 
 	//InsertLL(4, 100);
 	//Display(head);
+	
+	InsertAtLast(20);
+	InsertAtLast(400);
+	InsertAtLast(300);
+	InsertAtLast(70);
+	Display(head);
 
 
 }

@@ -558,7 +558,7 @@ void createLL(int a[], int n)
 
 int main()
 {
-	int a[5] = { 10,10,10,10,10};
+	int a[5] = { 10,10,20,50,50};
 
 	createLL(a, 5);
 

@@ -12,6 +12,37 @@ struct Node
 int countingNodes();
 
 
+void RemoveDuplicates()
+{
+
+	struct Node* cur, * prev;
+
+	prev = head;
+	cur = head->next;
+
+	if (!head || !head->next)
+		return;
+
+	while (cur)
+	{
+
+		if (prev->data != cur->data)
+		{
+			prev = cur;
+			cur = cur->next;
+		}
+		else
+		{
+			prev->next = cur->next;
+			delete cur;
+			cur = prev->next;
+		}
+
+	}
+
+}
+
+
 void IsSorted2()
 {
 	struct Node* p = head;
@@ -527,7 +558,7 @@ void createLL(int a[], int n)
 
 int main()
 {
-	int a[5] = { 100,20,30,40,50};
+	int a[5] = { 10,10,10,10,10};
 
 	createLL(a, 5);
 
@@ -612,6 +643,11 @@ int main()
 
 	//IsSorted();
 
+	//IsSorted2();
 
-	IsSorted2();
+	RemoveDuplicates();
+	cout << endl << "after removing duplicates" << endl;
+	Display(head);
+
+
 }

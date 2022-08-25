@@ -14,6 +14,36 @@ int countingNodes();
 
 
 
+void InsertInSortedList2(int val)
+{
+
+	struct Node* cur = head , *newnode = new Node;
+
+	newnode->data = val;
+	newnode->next = NULL;
+
+	if (!head)
+	{
+		head = newnode;
+		return;
+	}
+
+	if (val < head->data)
+	{
+		newnode->next = head;
+		head = newnode;
+		return;
+	}
+
+	while (cur->next && cur->next->data < val)
+		cur = cur->next;
+	
+	newnode->next=cur->next;
+	cur->next = newnode;
+}
+
+
+
 void InsertInSortedList(int val)
 {
 	struct Node* cur, * prev ;
@@ -446,11 +476,23 @@ int main()
 
 	/*int a[5] = { 10,20,30,60,100 };
 
-	createLL(a, 5);*/
+	createLL(a, 5);
 
 	Display(head);
 
 	InsertInSortedList(150);
+	cout << endl << "after insertion " << endl;
+
+	Display(head);*/
+
+
+	int a[5] = { 10,20,30,60,100 };
+
+	createLL(a, 5);
+
+	Display(head);
+
+	InsertInSortedList2(90);
 	cout << endl << "after insertion " << endl;
 
 	Display(head);

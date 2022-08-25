@@ -1,7 +1,6 @@
 #include<iostream>
 using namespace std;
 
-
 struct Node
 {
 	int data;
@@ -12,6 +11,116 @@ struct Node
 
 int countingNodes();
 
+
+void IsSorted2()
+{
+	struct Node* p = head;
+
+	if (!head || !head->next)
+	{
+		cout << "empty list or single element list - no need sorting ";
+	}
+
+	while (p->next && p->data < p->next->data)
+		p = p->next;
+
+	if (!p->next)
+		cout << "List is sorted";
+	else
+		cout << "List is not sorted";
+
+}
+
+
+void IsSorted()
+{
+	struct Node* p = head;
+
+	if (!head || !head->next)
+	{
+		cout << "Empty list or list with single element no need to sort";
+		return;
+	}
+
+	int x = INT_MIN;
+
+	while (p)
+	{
+		if (p->data < x)
+			break;
+
+		x = p->data;
+		p = p->next;
+	}
+
+	if (!p)
+		cout << "Linked List is Sorted";
+	else
+		cout << "Linked List is not Sorted";
+
+
+}
+
+
+void deleteWithValue(int val)
+{
+	struct Node* cur, * pre;
+	cur = head;
+	pre = NULL;
+
+	if (val == head->data)
+	{
+		head = head->next;
+		delete cur;
+		return;
+	}
+
+	while (cur && cur->data != val)
+	{
+		pre = cur;
+		cur = cur->next;
+	}
+	if (!cur)
+	{
+		cout << endl << "Given value not found in list -> Deletion not performed" << endl;
+		return;
+	}
+	pre->next = cur->next;
+
+	delete cur;
+}
+
+
+void deleteWithPosition(int pos)
+{
+	struct Node* cur, * prev;
+	prev = NULL;
+	cur = head;
+
+	if (pos == 1)
+	{
+		head = head->next;
+		delete cur;
+		return;
+	}
+	if (pos<=0 || pos > countingNodes())
+	{
+		cout<<endl << "Invalid position is given -> Deletion not possible " << endl;
+		return;
+	}
+	
+	
+	for (int i = 1;i < pos && cur;i++)
+	{
+		prev = cur;
+		cur = cur->next;
+	}
+	prev->next = cur->next;
+
+	delete cur;
+
+
+}
 
 
 void InsertInSortedList2(int val)
@@ -41,7 +150,6 @@ void InsertInSortedList2(int val)
 	newnode->next=cur->next;
 	cur->next = newnode;
 }
-
 
 
 void InsertInSortedList(int val)
@@ -80,7 +188,6 @@ void InsertInSortedList(int val)
 }
 
 
-
 void InsertAtLast(int val)
 {
 	struct Node * newNode;
@@ -107,9 +214,6 @@ void InsertAtLast(int val)
 	glast = last;
 
 }
-
-
-
 
 void InsertLL(int pos, int val)
 {
@@ -143,9 +247,6 @@ void InsertLL(int pos, int val)
 }
 
 
-
-
-
 void LsearchSwap(int x)
 {
 	struct Node* cur = head, * prev = NULL, * pprev = NULL;
@@ -166,7 +267,6 @@ void LsearchSwap(int x)
 
 	                    
 }
-
 
 
 void LsearchMoveToFront(int x)
@@ -243,6 +343,7 @@ int recurMax2(struct Node* head)
 
 }
 
+
 int RecurMaxValLL(struct Node* head)
 {
 	
@@ -284,6 +385,7 @@ int recursiveSum(struct Node* head)
 
 }
 
+
 void sumLL()
 {
 	int sum = 0;
@@ -308,6 +410,7 @@ int recursivecountDown(struct Node* head)
 
 }
 
+
 int recursiveCount(struct Node* head )
 {
 	int x = 0;
@@ -320,6 +423,7 @@ int recursiveCount(struct Node* head )
 	cout << x << " ";
 	return x;
 }
+
 
 int countingNodes()
 {
@@ -394,8 +498,9 @@ void Display(struct Node *head)
 		cout << p->data << " ";
 		p = p->next;
 	}
-
+	cout << endl;
 }
+
 
 void createLL(int a[], int n)
 {
@@ -420,15 +525,13 @@ void createLL(int a[], int n)
 
 
 
-
-
 int main()
 {
-	/*int a[5] = { 10,20,30,40,50 };
+	int a[5] = { 100,20,30,40,50};
 
 	createLL(a, 5);
 
-	Display(head);*/
+	Display(head);
 
 	//ReverseLL();
 	//Display();
@@ -486,7 +589,7 @@ int main()
 	Display(head);*/
 
 
-	int a[5] = { 10,20,30,60,100 };
+	/*int a[5] = { 10,20,30,60,100 };
 
 	createLL(a, 5);
 
@@ -495,7 +598,20 @@ int main()
 	InsertInSortedList2(90);
 	cout << endl << "after insertion " << endl;
 
-	Display(head);
+	Display(head);*/
 
 
+	/*deleteWithPosition(0);
+	cout << endl << "after deletion " << endl;
+	Display(head);*/
+
+
+	/*deleteWithValue(50);
+	cout << endl << "after deletion " << endl;
+	Display(head);*/
+
+	//IsSorted();
+
+
+	IsSorted2();
 }

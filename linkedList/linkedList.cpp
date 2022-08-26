@@ -13,6 +13,67 @@ int countingNodes();
 
 
 
+void ReverseRecurLL3(struct Node* cur, struct Node* nxt)
+{
+	if (nxt)
+	{
+		ReverseRecurLL3(nxt, nxt->next);
+		nxt->next = cur;
+	}
+	else
+		head = cur;
+}
+
+
+void ReVersingLL2()
+{
+
+	struct Node* prev, * cur, * nnext;
+	prev = NULL;
+	cur = NULL;
+	nnext = head;
+
+	if (!head || !head->next)
+		return;
+
+	while (nnext)
+	{
+		prev = cur;
+		cur = nnext;
+		nnext = nnext->next;
+		cur->next = prev;
+	}
+
+	head = cur;
+}
+
+
+void ReversingLL1()
+{
+	struct Node* p = head;
+	
+	int a[20],i;
+
+	if (!head || !head->next)
+		return;
+
+	for (i = 0;p;i++)
+	{
+		a[i] = p->data;
+		p = p->next;
+	}
+	p = head;
+	
+	while (p)
+	{
+		p->data = a[--i];
+		p = p->next;		
+	}
+
+}
+
+
+
 void RemoveDuplicates2()
 {
 	struct Node* cur, * d;
@@ -271,6 +332,7 @@ void InsertAtLast(int val)
 
 }
 
+
 void InsertLL(int pos, int val)
 {
 
@@ -511,7 +573,7 @@ void recursiveDisplay(struct Node* head)
 
 struct Node* RecursiveReverseLL(struct Node *head)
 {
-	if (!head->next || !head)
+	if (!head->next )
 		return head;
 
 	struct Node* temp;
@@ -583,16 +645,18 @@ void createLL(int a[], int n)
 
 int main()
 {
-	int a[5] = { 10,10,20,50,50};
+	/*int a[6] = { 10,20,30,40,50,60};
 
-	createLL(a, 5);
+	createLL(a, 6);
 
-	Display(head);
+	Display(head);*/
 
-	//ReverseLL();
-	//Display();
-	//cout <<endl<< "after recursive reverse call " << endl;
-	//Display(RecursiveReverseLL(head));
+	/*ReverseLL();
+	Display(head);*/
+
+
+	/*cout <<endl<< "after recursive reverse call " << endl;
+	Display(RecursiveReverseLL(head));*/
 	
 	//recursiveDisplay(head);
 
@@ -674,10 +738,23 @@ int main()
 	cout << endl << "after removing duplicates" << endl;
 	Display(head);*/
 
-	RemoveDuplicates2();
+	/*RemoveDuplicates2();
 	cout << endl << "after removing duplicates" << endl;
-	Display(head);
+	Display(head);*/
 
+	/*ReversingLL1();
+	cout << endl << "after reversing the linked list" << endl;
+	Display(head);*/
+
+
+	/*ReVersingLL2();
+	cout << endl << "after reversing the linked list" << endl;
+	Display(head);*/
+	
+	
+	/*ReverseRecurLL3(NULL, head);
+	cout << endl << "after reversing the linked list using recursion" << endl;
+	Display(head);*/
 
 
 }
